@@ -59,7 +59,7 @@ line-height:1.618;
 }
 
 /* Transitions */
-a { transition:background-color 200ms ease; }
+a { transition:all 200ms ease; }
 
 /* Highlighting */
 ::selection { background-color:#1a936f; color:#fff; }
