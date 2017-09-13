@@ -1,0 +1,288 @@
+/* TOC - DIFF
+    
+    1. CSS Reset
+    2. Global Page Styles
+    3. Links
+    4. Buttons
+    5. Form Elements
+    6. Custom Styles
+    7. Diff View
+    
+*/
+
+
+
+/* CSS Reset
+================================================== */
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
+border:0;
+font:inherit;
+font-size:100%;
+margin:0;
+padding:0;
+vertical-align:baseline;
+}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+display:block;
+}
+
+body { line-height:1; }
+ul,ol { list-style:none; }
+blockquote,q { quotes:none; }
+blockquote::before,blockquote::after,q::before,q::after { content:none; }
+table { border-collapse:collapse; border-spacing:0; }
+
+button,input:not([type="checkbox"]):not([type="radio"]),textarea { appearance:none; background:none; }
+button::-moz-focus-inner,input::-moz-focus-inner { border:0; padding:0; }
+
+* { -webkit-tap-highlight-color:rgba(0,0,0,0); -webkit-tap-highlight-color:transparent; }
+
+*,*::before,*::after { box-sizing:border-box; }
+*,*:focus { outline:none; }
+
+
+
+/* Global Page Styles
+================================================== */
+
+html,body {
+-webkit-font-smoothing:antialiased;
+-webkit-text-size-adjust:100%;
+background-color:#cef2c4;
+color:#424c55;
+font-family:"Source Code Pro", sans-serif;
+font-size:100%;
+font-weight:400;
+line-height:1.618;
+}
+
+/* Transitions */
+a { transition:background-color 200ms ease; }
+
+/* Highlighting */
+::selection { background-color:#1a936f; color:#fff; }
+
+/* Grid */
+.row { display:table; table-layout:fixed; width:100%; }
+.col { display:table-cell; }
+
+
+
+/* Links
+================================================== */
+
+a,a:link,a:visited { color:#1a936f; text-decoration:none; }
+a:hover,a:active { color:#22aa81; }
+
+
+
+/* Buttons
+================================================== */
+
+.button {
+background-color:#22aa81;
+border:3px solid #1a936f;
+color:#fff;
+cursor:pointer;
+display:inline-block;
+font-family:"Source Code Pro", sans-serif;
+font-size:.9rem;
+font-weight:600;
+line-height:normal;
+margin:0 1.5rem 3rem 0;
+padding:.865rem 1.365rem;
+text-transform:uppercase;
+}
+
+.button:hover {
+background-color:#1a936f;
+color:#fff;
+}
+
+
+
+/* Form Elements
+================================================== */
+
+input[type="text"],
+input[type="number"],
+textarea {
+background-color:#fff !important;
+border:3px solid #1a936f;
+color:#444;
+display:block;
+font-family:"Source Code Pro", sans-serif;
+font-size:.9rem;
+font-weight:400;
+height:auto;
+margin:0 0 3rem;
+max-width:100%;
+padding:.865rem;
+width:100%;
+}
+
+textarea {
+min-height:20rem;
+overflow:auto;
+resize:none;
+}
+
+
+
+/* Custom Styles
+================================================== */
+
+.container {
+margin:0 auto;
+max-width:1500px;
+width:90%;
+}
+
+h1 {
+font-family:"Passion One", cursive;
+font-size:5rem;
+margin:1rem 0;
+text-align:center;
+text-transform:uppercase;
+}
+
+section label {
+display:inline-block;
+font-size:1.1rem;
+font-weight:600;
+margin-bottom:.75rem;
+text-transform:uppercase;
+letter-spacing:.02rem;
+}
+
+#diff .col:first-child {
+padding-right:1.5rem;
+}
+
+#diff .col:last-child {
+padding-left:1.5rem;
+}
+
+#viewType .col:first-child {
+padding-right:1.5rem;
+text-align:right;
+}
+
+#viewType .col:last-child {
+padding-left:1.5rem;
+}
+
+#viewType .col label {
+margin:0 1.5rem 0 0;
+}
+
+#contextSize {
+display:inline-block;
+width:85px;
+}
+
+#diffOutput {
+margin-bottom:3rem;
+overflow:auto;
+}
+
+#diffOutput:empty {
+margin-bottom:0;
+}
+
+@media only screen and (max-width:800px) {
+   .col {
+    display:block;
+    padding:0 !important;
+    }
+    
+    #viewType .col:first-child,
+    #viewType .col:last-child {
+    text-align:center;
+    }
+    
+    #viewType .col a:first-of-type {
+    display:none;
+    }
+}
+
+
+
+/* Diff View
+================================================== */
+
+.diff {
+border:3px solid #1a936f;
+white-space:pre-wrap;
+width:100%;
+}
+
+.diff thead {
+background-color:#1a936f;
+color:#fff;
+}
+
+.diff thead th {
+padding:.5rem 0;
+}
+
+.diff thead .texttitle {
+font-size:1.1rem;
+font-weight:600;
+letter-spacing:.02rem;
+text-align:left;
+text-transform:uppercase;
+}
+
+.diff tbody th {
+background-color:#f7f7f7;
+border-right:1px solid #d9d9d9;
+font-size:.9rem;
+font-weight:normal;
+padding:.25rem .5rem .15rem;
+text-align:right;
+vertical-align:top;
+width:70px;
+}
+
+.diff tbody td {
+font-size:.9rem;
+padding:.25rem .5rem .15rem;
+vertical-align:baseline;
+}
+
+.diff .empty,
+.diff .skip,
+.diff .equal {
+background-color:#fff;
+}
+
+.diff .replace {
+background-color:#fffbdd;
+color:#8b582d;
+}
+
+.diff .delete {
+background-color:#ffeef0;
+color:#8b2d2d;
+}
+
+.diff .insert {
+background-color:#e6ffed;
+color:#3e614c;
+}
+
+.diff .author {
+background-color:#fff;
+border-top:1px solid #d9d9d9;
+padding:.5rem 1rem .5rem 0;
+text-align:right;
+}
+
+@media only screen and (max-width:800px) {
+    .diff:not(.inlinediff) {
+    display:none;
+    }
+}

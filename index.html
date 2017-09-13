@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<head>
+<title>DIFF</title>
+
+<!--meta-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+<!--styles-->
+<link rel="stylesheet prefetch prerender" href="https://fonts.googleapis.com/css?family=Passion+One|Source+Code+Pro:400,600,700" data-noprefix>
+<link rel="stylesheet" href="styles.css">
+
+<!--html5 shiv-->
+<!--[if lt IE 9]><script src="./js/html5shiv-printshiv.min.js"></script><![endif]-->
+
+<!--scripts-->
+<script src="prefixfree.min.js"></script>
+<script src="diffview.min.js"></script>
+<script src="difflib.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Diff</h1>
+        <section id="diff" class="row">
+            <div class="col">
+                <label for="baseText">Base Text:</label>
+                <textarea id="baseText" spellcheck="false"></textarea>
+            </div>
+            <div class="col">
+                <label for="newText">New Text:</label>
+                <textarea id="newText" spellcheck="false"></textarea>
+            </div>
+        </section>
+        <section id="viewType" class="row">
+            <div class="col">
+                <label for="contextSize">Context Size:</label><input id="contextSize" type="number" min="0" step="1" value="2">
+            </div>
+            <div class="col">
+                <a class="button" onclick="diff(0);">Side by Side &harr;</a><a class="button" onclick="diff(1);">Inline &varr;</a>
+            </div>
+        </section>
+        <div id="diffOutput"></div>
+    </div>
+    
+    <!--initialize jsdifflib-->
+    <script>
+        function diff(viewType) {
+            "use strict";
+            var byId = function(id) {
+                    return document.getElementById(id);
+                },
+                baseText = difflib.stringAsLines(byId('baseText').value),
+                newText = difflib.stringAsLines(byId('newText').value),
+                sm = new difflib.SequenceMatcher(baseText, newText),
+                opCodes = sm.get_opcodes(),
+                diffOutput = byId('diffOutput'),
+                contextSize = byId('contextSize').value;
+                
+            diffOutput.innerHTML = '';
+            contextSize = contextSize || null;
+            
+            diffOutput.appendChild(diffview.buildView({
+                baseTextLines: baseText,
+                newTextLines: newText,
+                opcodes: opCodes,
+                baseTextName: 'Base Text',
+                newTextName: 'New Text',
+                contextSize: contextSize,
+                viewType: viewType
+            }));
+        }
+    </script>
+</body>
+</html>
