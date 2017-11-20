@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+    <msapplication>
+        <tile>
+            <square150x150logo src="https://markhillard.github.io/DIFF/favicons/mstile-150x150.png"/>
+            <TileColor>#cef2c4</TileColor>
+        </tile>
+    </msapplication>
+</browserconfig>
