@@ -184,12 +184,14 @@ width:85px;
 }
 
 #diffOutput {
+border:3px solid #1a936f;
+border-top:none;
 margin-bottom:6rem;
 overflow:auto;
 }
 
 #diffOutput:empty {
-margin-bottom:0;
+display:none;
 }
 
 @media only screen and (max-width:800px) {
@@ -214,7 +216,6 @@ margin-bottom:0;
 ================================================== */
 
 .diff {
-border:3px solid #1a936f;
 white-space:pre-wrap;
 width:100%;
 }
@@ -225,7 +226,7 @@ color:#fff;
 }
 
 .diff thead th {
-padding:.5rem 0;
+padding:.725rem 0;
 }
 
 .diff thead .texttitle {
