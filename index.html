@@ -58,7 +58,10 @@
     <!--initialize jsdifflib-->
     <script>
         function diff(viewType) {
+            // use strict mode
             'use strict';
+            
+            // global variables
             var byId = function(id) {
                     return document.getElementById(id);
                 },
@@ -69,18 +72,24 @@
                 diffOutput = byId('diffOutput'),
                 contextSize = byId('contextSize').value;
                 
+            // reset diff output html
             diffOutput.innerHTML = '';
-            contextSize = contextSize || null;
             
-            diffOutput.appendChild(diffview.buildView({
-                baseTextLines: baseText,
-                newTextLines: newText,
-                opcodes: opCodes,
-                baseTextName: 'Base Text',
-                newTextName: 'New Text',
-                contextSize: contextSize,
-                viewType: viewType
-            }));
+            // check for matching text strings
+            if (baseText.toString() === newText.toString()) {
+                alert('perfect match!');
+            } else {
+                contextSize = contextSize || null;
+                diffOutput.appendChild(diffview.buildView({
+                    baseTextLines: baseText,
+                    newTextLines: newText,
+                    opcodes: opCodes,
+                    baseTextName: 'Base Text',
+                    newTextName: 'New Text',
+                    contextSize: contextSize,
+                    viewType: viewType
+                }));
+            }
         }
     </script>
 </body>
