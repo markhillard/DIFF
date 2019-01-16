@@ -20,15 +20,15 @@
 
 <!--styles-->
 <link rel="stylesheet prefetch prerender" href="https://fonts.googleapis.com/css?family=Passion+One|Source+Code+Pro:400,600,700" data-noprefix>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="./css/styles.css">
 
 <!--html5 shiv-->
 <!--[if lt IE 9]><script src="./js/html5shiv-printshiv.min.js"></script><![endif]-->
 
 <!--scripts-->
-<script src="prefixfree.min.js"></script>
-<script src="diffview.min.js"></script>
-<script src="difflib.min.js"></script>
+<script src="./js/prefixfree.min.js"></script>
+<script src="./js/diffview.min.js"></script>
+<script src="./js/difflib.min.js"></script>
 </head>
 
 <body>
@@ -52,34 +52,43 @@
                 <a class="button" onclick="diff(0);">Side by Side &harr;</a><a class="button" onclick="diff(1);">Inline &varr;</a>
             </div>
         </section>
-        <div id="diffOutput"></div>
+        <div id="diffOutput">
+            <a class="fullscreen" title="Expand" onclick="fullScreen(this);"></a>
+        </div>
     </div>
     
-    <!--initialize jsdifflib-->
+    <!--initialize-->
     <script>
+        // global variables
+        var byId = function (id) {
+                return document.getElementById(id);
+            },
+            diffOutput = byId('diffOutput');
+            
+        // diff view
         function diff(viewType) {
             // use strict mode
             'use strict';
             
-            // global variables
-            var byId = function(id) {
-                    return document.getElementById(id);
-                },
-                baseText = difflib.stringAsLines(byId('baseText').value),
+            // diff variables
+            var baseText = difflib.stringAsLines(byId('baseText').value),
                 newText = difflib.stringAsLines(byId('newText').value),
                 sm = new difflib.SequenceMatcher(baseText, newText),
                 opCodes = sm.get_opcodes(),
-                diffOutput = byId('diffOutput'),
                 contextSize = byId('contextSize').value;
                 
             // reset diff output html
-            diffOutput.innerHTML = '';
+            while (diffOutput.lastChild.className !== 'fullscreen') {
+                diffOutput.removeChild(diffOutput.lastChild);
+            }
             
             // check for matching text strings
             if (baseText.toString() === newText.toString()) {
+                diffOutput.style.display = 'none';
                 alert('perfect match!');
             } else {
                 contextSize = contextSize || null;
+                diffOutput.style.display = 'block';
                 diffOutput.appendChild(diffview.buildView({
                     baseTextLines: baseText,
                     newTextLines: newText,
@@ -90,6 +99,12 @@
                     viewType: viewType
                 }));
             }
+        }
+        
+        // fullscreen toggle
+        function fullScreen(el) {
+            diffOutput.classList.toggle('expand');
+            el.getAttribute('title') === 'Expand' ? el.setAttribute('title', 'Collapse') : el.setAttribute('title', 'Expand');
         }
     </script>
 </body>
