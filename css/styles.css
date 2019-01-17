@@ -123,7 +123,7 @@ width:100%;
 textarea {
 min-height:19rem;
 overflow:auto;
-resize:none;
+resize:vertical;
 }
 
 
