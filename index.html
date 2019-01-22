@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<html lang="en">
 
 <head>
 <title>DIFF</title>
@@ -7,6 +7,9 @@
 <!--meta-->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="author" content="Mark Hillard">
+<meta name="description" content="A good looking and easy to use diff tool.">
+<meta name="keywords" content="diff, diff tool, diff checker, compare code">
 
 <!--favicons-->
 <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png">
@@ -25,7 +28,7 @@
 <!--html5 shiv-->
 <!--[if lt IE 9]><script src="./js/html5shiv-printshiv.min.js"></script><![endif]-->
 
-<!--scripts-->
+<!--dependencies-->
 <script src="./js/prefixfree.min.js"></script>
 <script src="./js/diffview.min.js"></script>
 <script src="./js/difflib.min.js"></script>
@@ -57,55 +60,7 @@
         </div>
     </div>
     
-    <!--initialize-->
-    <script>
-        // global variables
-        var byId = function (id) {
-                return document.getElementById(id);
-            },
-            diffOutput = byId('diffOutput');
-            
-        // diff view
-        function diff(viewType) {
-            // use strict mode
-            'use strict';
-            
-            // diff variables
-            var baseText = difflib.stringAsLines(byId('baseText').value),
-                newText = difflib.stringAsLines(byId('newText').value),
-                sm = new difflib.SequenceMatcher(baseText, newText),
-                opCodes = sm.get_opcodes(),
-                contextSize = byId('contextSize').value;
-                
-            // reset diff output html
-            while (diffOutput.lastChild.className !== 'fullscreen') {
-                diffOutput.removeChild(diffOutput.lastChild);
-            }
-            
-            // check for matching text strings
-            if (baseText.toString() === newText.toString()) {
-                diffOutput.style.display = 'none';
-                alert('perfect match!');
-            } else {
-                contextSize = contextSize || null;
-                diffOutput.style.display = 'block';
-                diffOutput.appendChild(diffview.buildView({
-                    baseTextLines: baseText,
-                    newTextLines: newText,
-                    opcodes: opCodes,
-                    baseTextName: 'Base Text',
-                    newTextName: 'New Text',
-                    contextSize: contextSize,
-                    viewType: viewType
-                }));
-            }
-        }
-        
-        // fullscreen toggle
-        function fullScreen(el) {
-            diffOutput.classList.toggle('expand');
-            el.getAttribute('title') === 'Expand' ? el.setAttribute('title', 'Collapse') : el.setAttribute('title', 'Expand');
-        }
-    </script>
+    <!--initialize diff-->
+    <script src="./js/main.min.js"></script>
 </body>
 </html>
