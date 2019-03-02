@@ -171,6 +171,10 @@ text-align:right;
 padding-left:1.5rem;
 }
 
+#viewType .col:last-child .button:last-child {
+margin-right:0;
+}
+
 #viewType .col label {
 margin:0 1.5rem 0 0;
 }

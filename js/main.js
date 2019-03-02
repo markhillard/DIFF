@@ -50,3 +50,10 @@ function fullScreen(el) {
     diffOutput.classList.toggle('expand');
     el.getAttribute('title') === 'Expand' ? el.setAttribute('title', 'Collapse') : el.setAttribute('title', 'Expand');
 }
+
+// clear
+function clearAll() {
+    diffOutput.style.display = 'none';
+    document.getElementById('baseText').value = '';
+    document.getElementById('newText').value = '';
+}
