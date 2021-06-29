@@ -4,7 +4,7 @@
 ██   ██ ██ █████   █████
 ██   ██ ██ ██      ██
 ██████  ██ ██      ██
-2019 ~ Mark Hillard | (mark@)markhillard.com
+2021 ~ Mark Hillard | (mark@)markhillard.com
 */
 
 
@@ -45,10 +45,25 @@ function diff(viewType) {
     }
 }
 
+// context update
+function contextUpdate() {
+    if (diffOutput.offsetParent !== null) {
+        if (document.getElementsByClassName('diff')[0].classList.contains('inlinediff')) {
+            diff(1);
+        } else {
+            diff(0);
+        }
+    }
+}
+
 // fullscreen toggle
 function fullScreen(el) {
     diffOutput.classList.toggle('expand');
-    el.getAttribute('title') === 'Expand' ? el.setAttribute('title', 'Collapse') : el.setAttribute('title', 'Expand');
+    if (el.getAttribute('title') === 'Expand') {
+        el.setAttribute('title', 'Collapse');
+    } else {
+        el.setAttribute('title', 'Expand');
+    }
 }
 
 // clear
